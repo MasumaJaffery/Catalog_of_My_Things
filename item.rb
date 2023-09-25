@@ -3,6 +3,7 @@ require 'date'
 class Item
  attr_accessor :label, :author, :genre, :date
  attr_reader :id, :archived
+ # inside intialize only those items that need association
  def initialize(label, author, genre, publish_date)
     @label = label,
     @author = author,
@@ -11,7 +12,7 @@ class Item
     @id: Random.rand(1...1000),
     @archived = false
  end
-
+ 
  def can_be_archived?
 
  end
