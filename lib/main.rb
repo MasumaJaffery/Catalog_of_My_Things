@@ -1,4 +1,5 @@
 def main
+  puts 'Welcome to our Catalog App'
   loop
   puts '1 - List all books'
   puts '2 - List all music albums'
