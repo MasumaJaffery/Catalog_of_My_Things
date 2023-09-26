@@ -23,8 +23,8 @@ class Item
   end
 
   def move_to_archive
-    return unless can_be_archived?
+    return unless can_be_archived? == true
 
-    require @archived = true
+    @archived = true
   end
 end
