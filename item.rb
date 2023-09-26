@@ -14,7 +14,7 @@ class Item
  end
  
  def can_be_archived?
-
+   return true if Date.now - publish_date > ''
  end
 
  def move_to_archive
