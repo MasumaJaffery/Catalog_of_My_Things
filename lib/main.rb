@@ -43,7 +43,7 @@ when 12
 when 13
 # Exit
 else
-  puts 'Invalide choice'
+  puts 'Invalid choice'
 end
 
 main
