@@ -1,6 +1,6 @@
 def main
   loop 
-   puts " 1- List all books"
+    puts "1 - List all books"
     puts "2 - List all music albums"
     puts "3 - List all movies"
     puts "4 - List of games"
