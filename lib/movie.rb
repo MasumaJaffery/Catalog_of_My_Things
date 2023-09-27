@@ -1,35 +1,19 @@
+require 'date' 
 require_relative 'item'
-
+# Movie inherits from Item
 class Movie < Item
-  attr_reader :silent
+  attr_accessor :silent
 
-  def initialize(silent, label, author, genre, publish_date, id: nil)
+  def initialize(label, author, genre, publish_date, silent)
     super(label, author, genre, publish_date)
     @silent = silent
-    @id = id || Random.rand(1...1000)
   end
 
-  # Override parent method
   def can_be_archived?
-    if super || @silent
-      true
-    else
-      false
-    end
+    super || @silent
   end
 end
 
-# Create an instance of the Movie 
-movie = Movie.new(true, "Inception", "Christopher Nolan", "Science Fiction", "2023-09-23")
-puts "Silent: #{movie.silent}"
-puts "Label: #{movie.label}"
-puts "Author: #{movie.author}"
-puts "Genre: #{movie.genre}"
-puts "Publish Date: #{movie.publish_date}"
-puts "ID: #{movie.id}"
-if movie.can_be_archived?
-  puts "This movie can be archived."
-else
-  puts "This movie cannot be archived."
-end
-
+# Test the class by creating an instance
+movie = Movie.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
+puts movie.can_be_archived? 
