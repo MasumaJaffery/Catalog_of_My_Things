@@ -8,7 +8,6 @@ class Label < Item
   def initialize(title, color, items, publish_date)
     # Calling Constructor of Parent Class (Item)
     super('#label', '#author', '#genre', publish_date)
-    @id = rand(1...100)
     @title = title
     @color = color
     @items = items
