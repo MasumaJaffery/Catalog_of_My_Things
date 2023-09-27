@@ -1,4 +1,4 @@
-require 'date' 
+require 'date'
 require_relative 'item'
 # Movie inherits from Item
 class Movie < Item
@@ -16,4 +16,4 @@ end
 
 # Test the class by creating an instance
 movie = Movie.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
-puts movie.can_be_archived? 
+puts movie.can_be_archived?
