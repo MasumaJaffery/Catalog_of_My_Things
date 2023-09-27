@@ -17,7 +17,7 @@ class Source
 end
 
 # source = Source.new(1, 'Baqir')
-
+# now the add_item method will get an instance of class and it will add that into items object
 # Print the source's properties
 # puts "Source ID: #{source.id}"
 # puts "Source Name: #{source.name}"
