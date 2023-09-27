@@ -22,6 +22,7 @@ Metrics/CyclomaticComplexity:
   Max: 15 # You can adjust this value as needed.
 
 
+
 Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
@@ -42,6 +43,8 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+Layout/EndOfLine:
+  Enabled: false
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
