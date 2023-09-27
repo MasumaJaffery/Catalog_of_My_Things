@@ -35,6 +35,11 @@ def display_menu
   end
 end
 
+def exit_application
+    puts 'exited'
+    exit
+  end
+
 def main
   display_menu
 end
