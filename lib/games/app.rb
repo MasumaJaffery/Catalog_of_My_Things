@@ -1,9 +1,16 @@
-require_relative 'games/game'
-require_relative 'games/author'
+require_relative 'game'
+require_relative 'author'
+require_relative 'modules/mode_author'
+require_relative 'modules/mode_game'
+
+require 'json'
+require 'fileutils'
 class App
+  include AuthorMod
+  include GameMod
   def initialize
-    @games = []
-    @authors = []
+    @games = read_data('games.json')
+    @authors = read_data('authors.json')
   end
 
   def list_games
@@ -11,7 +18,9 @@ class App
       puts 'No game available. \n'
     else
       puts 'List of games : '
-      @games.each { |game| puts "Title: '#{game.title}', Author: '#{game.author.first_name}'" }
+      @games.each do |game|
+        puts "Title: '#{game.title}', Author: '#{game.author.first_name} #{game.author.last_name}'"
+      end
     end
   end
 
@@ -20,89 +29,8 @@ class App
       puts "No author available \n"
     else
       puts 'List og authors : '
-      @authors.map { |author| puts "First name: '#{author.first_name}', Last name: '#{game.last_name}'" }
+      @authors.map { |author| puts "name: '#{author.first_name} #{author.last_name}'" }
     end
-  end
-
-  def take_title
-    print 'Title: '
-    title = gets.chomp
-    if title.empty?
-      puts 'Title cannot be empty.'
-      take_title
-    else
-      title
-    end
-  end
-
-  def take_date(x_date)
-    print "#{x_date} [YYYY-mm-dd] : "
-    date = gets.chomp
-    if data_format?(date)
-      date
-    else
-      puts 'invalide input'
-      take_date(x_date)
-    end
-  end
-
-  def data_format?(string)
-    # Try to parse the string as a date using Date.strptime and the format
-    format = '%Y-%m-%d'
-    Date.strptime(string, format)
-    # If no exception is raised, return true
-    true
-  rescue ArgumentError
-    # If an exception is raised, return false
-    false
-  end
-
-  def take_multiplayer
-    print 'Multiplier [Y/N] :'
-    multiplayer = gets.chomp.downcase
-    if %w[n y].include?(multiplayer)
-      multiplayer
-    else
-      puts "Please clik Y for 'yes' or N for 'No'"
-      take_multiplayer
-    end
-  end
-
-  def find_or_create_author
-    puts "Author's infos : "
-    first_name = take_name("Author's first name")
-    last_name = take_name("Authorr's last name")
-    # return the existing author
-    if @authors.any? do |author|
-         author.first_name == first_name && author.last_name == last_name
-       end
-      return @authors.find do |author|
-               author.first_name == first_name && author.last_name == last_name
-             end
-    end
-
-    # if not, create him/her
-    author = Author.new(first_name, last_name)
-    @authors.push(author)
-    author
-  end
-
-  def take_name(x_name)
-    print "#{x_name}: "
-    name = gets.chomp.strip
-    if name.empty?
-      puts 'Name cannot be empty'
-      take_name(x_name)
-    else
-      # returns a new string with the first character converted to uppercase
-      # and the remaining characters converted to lowercase
-      name.capitalize
-    end
-  end
-
-  def attribute_game_to_author(game)
-    author = find_or_create_author
-    author.add_item(game)
   end
 
   def add_game
@@ -113,5 +41,62 @@ class App
     game = Game.new(multiplayer, last_play, published_date, title)
     @games.push(game)
     attribute_game_to_author(game)
+    print "Game created \n"
+  end
+
+  def object_to_hash(object)
+    hash = {}
+    arr_of_class = %w[Game Author] # to store the class_name
+    hash['class'] = object.class # store the class_name
+    object.instance_variables.each do |var|
+      name = var.to_s.delete('@') # take the name of instance variable without @
+      value = object.instance_variable_get(var) # retrive the value of variable by it's name
+      # if the value is an instance of Game or Author. so we transforme it into a hash to
+      value = object_to_hash(value) if arr_of_class.include?(value.class.to_s)
+      hash[name] = value
+    end
+    hash
+  end
+
+  def write_data
+    data = { games: @games, authors: @authors }
+    data.each do |key, arr|
+      arr = arr.select { |obj| !obj.nil? || arr.empty? } # take it if it's not empty or nil arrays
+      arr = arr.map { |obj| object_to_hash(obj) } # Convert each object to a hash
+      file_name = "#{key}.json" # the name of our futur json file
+      json = JSON.generate(arr) # Generate a JSON string fron the arr of hashes
+      FileUtils.mkdir_p('../json') # create a json file if it's not exist
+      File.open("../json/#{file_name}", 'w') do |f|
+        f.puts(json)
+      end
+      puts "The array #{key} has been written to #{file_name}"
+    end
+  end
+
+  def read_data(file_name)
+    if Dir.exist?('../json')
+      if File.exist?("../json/#{file_name}")
+        json = File.read("../json/#{file_name}")
+        arr_of_hashes = JSON.parse(json) # Convert JSON string into an array of hashes
+
+        arr = []
+        arr_of_hashes.each do |hash|
+          real_class = Kernel.const_get(hash['class']) # allows to get the class by it's name
+          object = real_class.json_create(hash) # create methode from the hash
+          arr.push(object) # we get an array of objects
+        end
+        arr
+      else
+        [] # return an empty array if the file doesn't exist
+      end
+    else
+      [] # return an empty array if the folder doesn't exist
+    end
+  end
+
+  def exit_application
+    write_data
+    puts 'exited'
+    exit
   end
 end
