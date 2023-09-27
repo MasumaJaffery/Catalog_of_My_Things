@@ -1,6 +1,4 @@
 # Define the 'actions' hash
-require_relative 'games/app'
-
 ACTIONS = {
   1 => :list_books,
   2 => :list_music_albums,
@@ -17,29 +15,28 @@ ACTIONS = {
   13 => :exit_application
 }.freeze
 
-def handle_option(option, app)
+def handle_option(option)
   action = ACTIONS[option]
   if action
-    app.send(action)
+    send(action)
   else
     puts 'Invalid option.'
   end
 end
 
-def display_menu(app)
+def display_menu
   puts 'Welcome to our Catalog App'
 
   loop do
     ACTIONS.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
     print 'Option: '
     choice = gets.chomp.to_i
-    handle_option(choice, app)
+    handle_option(choice)
   end
 end
 
 def main
-  app = App.new
-  display_menu(app)
+  display_menu
 end
 
 main
