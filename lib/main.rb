@@ -36,9 +36,9 @@ def display_menu
 end
 
 def exit_application
-    puts 'exited'
-    exit
-  end
+  puts 'exited'
+  exit
+end
 
 def main
   display_menu
