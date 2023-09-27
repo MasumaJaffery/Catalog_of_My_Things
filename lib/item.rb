@@ -15,15 +15,14 @@ class Item
   end
 
   def can_be_archived?
-    now = Date.today # Use Date.today to ensure consistent data types
-    ten_years_ago = now - 3652 # Approximately 10 years in days
-    return true if @publish_date > ten_years_ago
-
-    false
+    now = Date.today
+    # now.prev_year(10) calculates past 10 years including leap years.
+    ten_years_before_now = now.prev_year(10)
+    (@publish_date > ten_years_before_now)
   end
 
   def move_to_archive
-    return unless can_be_archived? == true
+    return unless can_be_archived?
 
     @archived = true
   end
