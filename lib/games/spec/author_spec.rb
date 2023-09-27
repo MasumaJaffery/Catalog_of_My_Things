@@ -22,11 +22,10 @@ describe Author do
       the_author.add_item(item)
       expect(the_author.items).to include(item)
     end
-  
+
     it 'sets the author of the item to self' do
       the_author.add_item(item)
       expect(item.author).to eq(the_author)
     end
   end
-  
 end
