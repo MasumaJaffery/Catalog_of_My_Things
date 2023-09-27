@@ -14,7 +14,6 @@ describe Game do
     end
   end
 
-
   describe '#can_be_archived?' do
     it 'returns true if the parent method returns true and the last_played_at is older than two years' do
       expect(subject.can_be_archived?).to be(true)
