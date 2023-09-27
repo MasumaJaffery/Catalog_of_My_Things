@@ -18,8 +18,24 @@ class Game < Item
     false
   end
 
-  def author=(author)
+  def add_author(author)
     author.items.push(self)
-    super(author)
+    self.author = author
+  end
+
+  def self.json_create(hash)
+    title = hash.fetch('title') # get the values from the hash by their keys
+    last_played_at = hash.fetch('last_played_at')
+    publish_date = hash.fetch('publish_date')
+    multiplayer = hash.fetch('multiplayer')
+    author = hash.fetch('author')
+    puts last_played_at
+    object_game = Game.new(multiplayer, last_played_at, publish_date, title = title)
+    object_author = Author.new(author['first_name'], author['last_name'])
+    object_author.items = author['items']
+    object_game.author = object_author
+    
+    # Return the book object
+    object_game
   end
 end

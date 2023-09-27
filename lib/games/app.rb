@@ -9,8 +9,8 @@ class App
   include AuthorMod
   include GameMod
   def initialize
-    @games = []
-    @authors = []
+    @games = read_data('games.json')
+    @authors = read_data('authors.json')
   end
 
   def list_games
@@ -40,6 +40,7 @@ class App
     game = Game.new(multiplayer, last_play, published_date, title)
     @games.push(game)
     attribute_game_to_author(game)
+    print "Game created \n"
   end
 
   def object_to_hash(object)
@@ -68,6 +69,27 @@ class App
         f.puts(json)
       end
       puts "The array #{key} has been written to #{file_name}"
+    end
+  end
+
+  def read_data(file_name)
+    if Dir.exist?('../json')
+      if File.exist?("../json/#{file_name}")
+        json = File.read("../json/#{file_name}")
+        arr_of_hashes = JSON.parse(json) # Convert JSON string into an array of hashes
+
+        arr = []
+        arr_of_hashes.each do |hash|
+          real_class = Kernel.const_get(hash['class']) # allows to get the class by it's name
+          object = real_class.json_create(hash) # create methode from the hash
+          arr.push(object) # we get an array of objects
+        end
+        arr
+      else
+        [] # return an empty array if the file doesn't exist
+      end
+    else
+      [] # return an empty array if the folder doesn't exist
     end
   end
 

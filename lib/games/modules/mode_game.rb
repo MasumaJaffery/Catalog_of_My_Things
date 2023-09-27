@@ -36,7 +36,11 @@ module GameMod
         print 'Multiplier [Y/N] :'
         multiplayer = gets.chomp.downcase
         if %w[n y].include?(multiplayer)
-          multiplayer
+          if multiplayer == 'y'
+            1
+          else
+            0
+          end
         else
           puts "Please clik Y for 'yes' or N for 'No'"
           take_multiplayer
