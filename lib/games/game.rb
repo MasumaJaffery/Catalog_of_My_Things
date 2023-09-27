@@ -30,11 +30,11 @@ class Game < Item
     multiplayer = hash.fetch('multiplayer')
     author = hash.fetch('author')
     puts last_played_at
-    object_game = Game.new(multiplayer, last_played_at, publish_date, title = title)
+    object_game = Game.new(multiplayer, last_played_at, publish_date, title)
     object_author = Author.new(author['first_name'], author['last_name'])
     object_author.items = author['items']
     object_game.author = object_author
-    
+
     # Return the book object
     object_game
   end

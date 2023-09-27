@@ -18,8 +18,9 @@ class App
       puts 'No game available. \n'
     else
       puts 'List of games : '
-      @games.each { |game| 
-        puts "Title: '#{game.title}', Author: '#{game.author.first_name} #{game.author.last_name}'" }
+      @games.each do |game|
+        puts "Title: '#{game.title}', Author: '#{game.author.first_name} #{game.author.last_name}'"
+      end
     end
   end
 
@@ -28,7 +29,7 @@ class App
       puts "No author available \n"
     else
       puts 'List og authors : '
-      @authors.map { |author| puts "First name: '#{author.first_name}', Last name: '#{author.last_name}'" }
+      @authors.map { |author| puts "name: '#{author.first_name} #{author.last_name}'" }
     end
   end
 
@@ -49,7 +50,7 @@ class App
     hash['class'] = object.class # store the class_name
     object.instance_variables.each do |var|
       name = var.to_s.delete('@') # take the name of instance variable without @
-      value = object.instance_variable_get(var) # retrive the value of variable by it's name 
+      value = object.instance_variable_get(var) # retrive the value of variable by it's name
       # if the value is an instance of Game or Author. so we transforme it into a hash to
       value = object_to_hash(value) if arr_of_class.include?(value.class.to_s)
       hash[name] = value
