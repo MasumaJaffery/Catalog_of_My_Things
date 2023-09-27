@@ -1,5 +1,4 @@
 # Define the 'actions' hash
-require_relative 'app'
 
 ACTIONS = {
   1 => :list_books,
@@ -20,7 +19,7 @@ ACTIONS = {
 def handle_option(option)
   action = ACTIONS[option]
   if action
-    app.send(action)
+    send(action)
   else
     puts 'Invalid option.'
   end

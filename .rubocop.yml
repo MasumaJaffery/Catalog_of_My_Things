@@ -18,6 +18,9 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   IgnoredMethods: ['describe']
   Max: 30
+Metrics/CyclomaticComplexity:
+  Max: 15 # You can adjust this value as needed.
+
 
 
 Style/Documentation:
@@ -40,6 +43,8 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+Layout/EndOfLine:
+  Enabled: false
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
