@@ -1,53 +1,47 @@
-def main
-  puts 'Welcome to our Catalog App'
-  loop do # Fixed the loop do syntax
-    puts '1 - List all books'
-    puts '2 - List all music albums'
-    puts '3 - List all movies'
-    puts '4 - List of games'
-    puts "5 - List all genres (e.g 'Comedy', 'Thriller')"
-    puts "6 - List all labels (e.g. 'Gift', 'New')"
-    puts "7 - List all authors (e.g. 'Stephen King')"
-    puts "8 - List all sources (e.g. 'From a friend', 'Online shop')"
-    puts '9 -  Add a book'
-    puts '10 - Add a music album'
-    puts '11 - Add a movie'
-    puts '12 - Add a game'
-    puts '13 - Exit'
-    
-    choice = gets.chomp.to_i
-    
-    case choice
-    when 1
-      # run the list of books
-    when 2
-      # run the list of music albums
-    when 3
-      # run the list of movies
-    when 4
-      # run the list of games
-    when 5
-      # run the list of genres
-    when 6
-      # run the list of labels
-    when 7
-      # run the list of authors
-    when 8
-      # run the list of sources
-    when 9
-      # Add a book
-    when 10
-      # Add a music album
-    when 11
-      # Add a movie
-    when 12
-      # Add a game
-    when 13
-      break # Exit the loop when the user chooses 13
-    else
-      puts 'Invalid choice'
-    end
+# Define the 'actions' hash
+ACTIONS = {
+  1 => :list_books,
+  2 => :list_music_albums,
+  3 => :list_movies,
+  4 => :list_games,
+  5 => :list_genres,
+  6 => :list_labels,
+  7 => :list_authors,
+  8 => :list_sources,
+  9 => :add_book,
+  10 => :add_music_album,
+  11 => :add_movie,
+  12 => :add_game,
+  13 => :exit_application
+}.freeze
+
+def handle_option(option)
+  action = ACTIONS[option]
+  if action
+    send(action)
+  else
+    puts 'Invalid option.'
   end
+end
+
+def display_menu
+  puts 'Welcome to our Catalog App'
+
+  loop do
+    ACTIONS.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
+    print 'Option: '
+    choice = gets.chomp.to_i
+    handle_option(choice)
+  end
+end
+
+def exit_application
+  puts 'exited'
+  exit
+end
+
+def main
+  display_menu
 end
 
 main
