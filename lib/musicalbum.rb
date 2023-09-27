@@ -18,4 +18,10 @@ end
 
 # Test the class by creating an instance and accessing the properties.
 album = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
-puts album.can_be_archived? # Should print whether it can be archived based on the logic
+puts "Scenario 1: Album with on_spotify true and publish_date within 10 years: #{album.can_be_archived?}" # Should print false
+
+album2 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', true)
+puts "Scenario 2: Album with on_spotify true and publish_date more than 10 years ago: #{album2.can_be_archived?}" # Should print true
+
+album3 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', false)
+puts "Scenario 3: Album with on_spotify false and publish_date more than 10 years ago: #{album3.can_be_archived?}" # Should print false
