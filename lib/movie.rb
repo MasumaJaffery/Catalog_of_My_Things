@@ -15,5 +15,5 @@ class Movie < Item
 end
 
 # Test the class by creating an instance
-movie = Movie.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
-puts movie.can_be_archived?
+# movie = Movie.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
+# puts movie.can_be_archived?
