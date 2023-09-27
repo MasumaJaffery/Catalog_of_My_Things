@@ -15,11 +15,11 @@ class Item
   end
 
   def can_be_archived?
-    now = Time.now
-    ten_years_before_now = now - (10 * 365 * 24 * 60 * 60) # 10 years in seconds, not accounting for leap years
-    return true if @publish_date > ten_years_before_now
+    now = Date.today # Use Date.today to ensure consistent data types
+    ten_years_ago = now - 3652 # Approximately 10 years in days
+    return false if @publish_date > ten_years_ago
 
-    false
+    true
   end
 
   def move_to_archive
@@ -28,4 +28,6 @@ class Item
     @archived = true
   end
 end
+
+
 
