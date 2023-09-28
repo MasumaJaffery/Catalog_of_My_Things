@@ -1,6 +1,8 @@
 require_relative 'item'
 require_relative 'movie'
 require_relative 'source'
+require_relative 'saveData'
+
 
 class App
   attr_accessor :movies, :sources
@@ -8,6 +10,20 @@ class App
   def initialize
     @movies = []
     @sources = []
+    @saveData = SaveData.new
+    load_data
+  end
+
+  def load_data
+    @saveData.load_data
+    @movies = @saveData.movies
+    @sources = @saveData.sources
+  end
+
+  def save_data
+    @saveData.books = @books
+    @saveData.movsources = @sources
+    @saveData.save_data
   end
 
   def list_movies
