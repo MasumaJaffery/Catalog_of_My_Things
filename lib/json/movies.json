@@ -26,5 +26,12 @@
     "genre": "historical",
     "publish_date": "2000-01-01",
     "silent": false
+  },
+  {
+    "label": "dfd",
+    "author": "d",
+    "genre": "f",
+    "publish_date": "2000-01-01",
+    "silent": false
   }
 ]
