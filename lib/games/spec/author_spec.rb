@@ -1,5 +1,6 @@
 require_relative '../author'
 require_relative '../../item'
+require 'json'
 
 describe Author do
   let(:the_author) { Author.new('John', 'Doe') }
