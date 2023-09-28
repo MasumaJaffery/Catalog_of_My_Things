@@ -129,5 +129,5 @@ class App
     attribute_game_to_author(game)
     print "Game created \n"
     save_data
-  end 
+  end
 end

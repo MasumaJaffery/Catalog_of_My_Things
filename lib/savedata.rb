@@ -89,7 +89,7 @@ class SaveData
         {
           'first_name' => author.first_name,
           'last_name' => author.last_name,
-          'items' => author.items,
+          'items' => author.items
         }
       end)
     end
@@ -131,6 +131,4 @@ class SaveData
     end
     hash
   end
-
-
 end
