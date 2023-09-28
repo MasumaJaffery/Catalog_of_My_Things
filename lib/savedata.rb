@@ -69,7 +69,7 @@ class SaveData
       file.puts JSON.pretty_generate(@music_albums.map do |album|
         {
           'label' => album.label,
-          'author' => object_to_hash(album.author),# transforme object into hash to store it
+          'author' => object_to_hash(album.author), # transforme object into hash to store it
           'genre' => album.genre.name, # Assume genre is not nil
           'publish_date' => album.publish_date.to_s, # Convert Date to string
           'on_spotify' => album.on_spotify
