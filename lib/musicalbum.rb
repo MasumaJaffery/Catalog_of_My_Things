@@ -12,16 +12,18 @@ class MusicAlbum < Item
 
   # Overriding the can_be_archived? method of the parent class
   def can_be_archived?
-    super && @on_spotify # Returns true if parent's method returns true and on_spotify is true
+    super_result = super
+    puts "In MusicAlbum: super: #{super_result} @on_spotify: #{@on_spotify} result: #{super_result && @on_spotify}"
+    super_result && @on_spotify
   end
 end
 
-# Test the class by creating an instance and accessing the properties.
-album = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
-puts "Scenario 1: Album with on_spotify true and publish_date within 10 years: #{album.can_be_archived?}" # Should print false
+# # Test the class by creating an instance and accessing the properties.
+# album = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
+# puts "Scenario 1: Album with on_spotify true and publish_date within 10 years: #{album.can_be_archived?}" # Should print false
 
-album2 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', true)
-puts "Scenario 2: Album with on_spotify true and publish_date more than 10 years ago: #{album2.can_be_archived?}" # Should print true
+# album2 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', true)
+# puts "Scenario 2: Album with on_spotify true and publish_date more than 10 years ago: #{album2.can_be_archived?}" # Should print true
 
-album3 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', false)
-puts "Scenario 3: Album with on_spotify false and publish_date more than 10 years ago: #{album3.can_be_archived?}" # Should print false
+# album3 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', false)
+# puts "Scenario 3: Album with on_spotify false and publish_date more than 10 years ago: #{album3.can_be_archived?}" # Should print false
