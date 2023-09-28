@@ -11,13 +11,13 @@ class SaveData
   # Load data from JSON files
   def load_data
     load_movies
-    # load_source
+    load_source
   end
 
   # Save data to JSON files
   def save_data
     save_movies
-    # save_source
+    save_source
     puts 'Data saved successfully.'
   rescue StandardError => e
     puts "Error saving data: #{e.message}"
@@ -45,6 +45,21 @@ class SaveData
           'silent' => movie.silent
         }
       end.to_json
+    end
+  end
+
+   # Load sources
+  def load_source
+    return unless File.exist?('./json/sources.json')
+
+    json_str = File.read('./json/sources.json')
+    @sources = JSON.parse(json_str).map { |source_data| Source.new(source_data['id'], source_data['name']) }
+  end
+
+  # Save sources
+  def save_source
+    File.open('./json/sources.json', 'w') do |file|
+      file.puts @sources.map { |source| { 'id' => source.id, 'name' => source.name } }.to_json
     end
   end
 end

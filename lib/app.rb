@@ -21,8 +21,8 @@ class App
   end
 
   def save_data
-    @saveData.books = @books
-    @saveData.movsources = @sources
+    @saveData.movies = @movies
+    @saveData.sources = @sources
     @saveData.save_data
   end
 
@@ -65,21 +65,23 @@ class App
   end
 
   def add_movie
-    puts 'Adding a movie:'
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    print 'Genre: '
-    genre = gets.chomp
-    print 'Publish Date (YYYY-MM-DD): '
-    publish_date = gets.chomp
-    print 'Silent (true/false): '
-    silent = gets.chomp.downcase == 'true'
+  puts 'Adding a movie:'
+  print 'Title: '
+  title = gets.chomp
+  print 'Author: '
+  author = gets.chomp
+  print 'Genre: '
+  genre = gets.chomp
+  print 'Publish Date (YYYY-MM-DD): '
+  publish_date = gets.chomp
+  print 'Silent (true/false): '
+  silent = gets.chomp.downcase == 'true'
 
-    # Create a new Movie instance
-    movie = Movie.new(title, author, genre, publish_date, silent)
-    @movies << movie
-    puts 'Movie added successfully.'
-  end
+  # Create a new Movie instance
+  movie = Movie.new(title, author, genre, publish_date, silent)
+  @movies << movie
+  puts 'Movie added successfully.'
+  save_data
+end
+
 end
