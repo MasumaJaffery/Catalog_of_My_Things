@@ -5,7 +5,7 @@ require_relative 'item' # Assuming Item is the parent class
 class MusicAlbum < Item
   attr_accessor :on_spotify
 
-  def initialize(label, author, genre, publish_date, on_spotify)
+  def initialize(label, author = nil, genre = nil, publish_date, on_spotify)
     super(label, author, genre, publish_date) # Calling the constructor of the parent class
     @on_spotify = on_spotify
   end

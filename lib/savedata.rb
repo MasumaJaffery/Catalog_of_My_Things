@@ -56,7 +56,10 @@ class SaveData
     json_str = File.read('./json/music_albums.json')
     @music_albums = JSON.parse(json_str).map do |album_data|
       genre = @genres.find { |g| g.name == album_data['genre'] }
-      MusicAlbum.new(album_data['label'], album_data['author'], genre, album_data['publish_date'], album_data['on_spotify'])
+      music_album = MusicAlbum.new(album_data['label'], nil , genre, album_data['publish_date'], album_data['on_spotify'])
+      hash_author = album_data['author']
+      music_album.author = Author.new(hash_author['first_name'], hash_author['last_name'])
+      music_album
     end
   end
 
@@ -66,7 +69,7 @@ class SaveData
       file.puts JSON.pretty_generate(@music_albums.map do |album|
         {
           'label' => album.label,
-          'author' => album.author,
+          'author' => object_to_hash(album.author),
           'genre' => album.genre.name, # Assume genre is not nil
           'publish_date' => album.publish_date.to_s, # Convert Date to string
           'on_spotify' => album.on_spotify
@@ -80,8 +83,11 @@ class SaveData
 
     json_str = File.read('./json/movies.json')
     @movies = JSON.parse(json_str).map do |movie_data|
-      Movie.new(movie_data['label'], movie_data['author'], movie_data['genre'], movie_data['publish_date'],
+      movie = Movie.new(movie_data['label'], nil, movie_data['genre'], movie_data['publish_date'],
                 movie_data['silent'])
+      hash_author = movie_data['author']
+      movie.author = Author.new(hash_author['first_name'], hash_author['last_name'])
+      movie
     end
   end
 
@@ -91,7 +97,7 @@ class SaveData
       file.puts JSON.pretty_generate(@movies.map do |movie|
         {
           'label' => movie.label,
-          'author' => movie.author,
+          'author' => object_to_hash(movie.author),
           'genre' => movie.genre,
           'publish_date' => movie.publish_date.to_s, # Convert Date to string before the next step
           'silent' => movie.silent
