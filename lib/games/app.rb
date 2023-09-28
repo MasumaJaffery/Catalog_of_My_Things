@@ -72,7 +72,7 @@ class App
       puts "The array #{key} has been written to #{file_name}"
     end
   end
-  
+
   def read_data(file_name)
     if Dir.exist?('../json')
       if File.exist?("../json/#{file_name}")

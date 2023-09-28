@@ -40,5 +40,12 @@
     "genre": "d",
     "publish_date": "2010-01-01",
     "silent": false
+  },
+  {
+    "label": "Jomong",
+    "author": "Shyjenk",
+    "genre": "action",
+    "publish_date": "2006-01-01",
+    "silent": false
   }
 ]
