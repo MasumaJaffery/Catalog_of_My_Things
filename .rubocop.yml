@@ -16,7 +16,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
-  IgnoredMethods: ['describe']
+  AllowedMethods: ['describe']
   Max: 30
 Metrics/CyclomaticComplexity:
   Max: 15 # You can adjust this value as needed.
@@ -45,8 +45,6 @@ Layout/EndOfLine:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
-Layout/EndOfLine:
-  Enabled: false
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
