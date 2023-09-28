@@ -1,5 +1,6 @@
 require_relative '../author'
 require_relative '../../item'
+require 'json'
 
 describe Author do
   let(:the_author) { Author.new('John', 'Doe') }
@@ -28,4 +29,39 @@ describe Author do
       expect(item.author).to eq(the_author)
     end
   end
+
+  describe '#json_create' do 
+    let(:valid_json) do
+      <<-END
+      {
+        "first_name": "George",
+        "last_name": "Orwell",
+        "items": [
+          {
+            "title": "Fifa 12",
+            "publish_date": "1949-06-08"
+          },
+          {
+            "title": "Animal Farm",
+            "publish_date": "1945-08-17"
+          }
+        ]
+      }
+      END
+  end
+
+  context 'with valid data' do
+    it 'return an author object with correct attribute' do
+      hash = JSON.parse(valid_json)
+      author = Author.json_create(hash)
+      expect(author).to be_an_instance_of(Author)
+      expect(author.first_name).to eq('George')
+      expect(author.last_name).to eq('Orwell')
+      # Expect the author object to have an items attribute that is an array of hashes
+      expect(author.items).to be_an(Array)
+      expect(author.items).to all(be_a(Hash))
+      expect(author.items[0]['title']).to eq('Fifa 12')
+    end
+  end
+end
 end
