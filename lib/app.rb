@@ -4,6 +4,9 @@ require_relative 'source'
 require_relative 'saveData'
 require_relative 'games/game'
 require_relative 'games/author'
+require_relative 'games/modules/mode_author'
+require_relative 'games/modules/mode_game'
+
 
 class App
   attr_accessor :movies, :sources, :games, :authors
@@ -89,5 +92,36 @@ class App
     @movies << movie
     puts 'Movie added successfully.'
     save_data
+  end
+
+  def list_games
+    if @games.empty?
+      puts 'No game available. \n'
+    else
+      puts 'List of games : '
+      @games.each do |game|
+        puts "Title: '#{game.title}', Author: '#{game.author.first_name} #{game.author.last_name}'"
+      end
+    end
+  end
+
+  def list_authors
+    if @authors.empty?
+      puts "No author available \n"
+    else
+      puts 'List og authors : '
+      @authors.map { |author| puts "name: '#{author.first_name} #{author.last_name}'" }
+    end
+  end
+
+  def add_game
+    title = take_title
+    published_date = take_date('Published date')
+    last_play = take_date('Last played at')
+    multiplayer = take_multiplayer
+    game = Game.new(multiplayer, last_play, published_date, title)
+    @games.push(game)
+    attribute_game_to_author(game)
+    print "Game created \n"
   end
 end
