@@ -1,4 +1,4 @@
-require_relative '../game'
+require_relative '../games/game'
 require 'json'
 
 describe Game do
