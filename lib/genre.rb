@@ -16,17 +16,17 @@ class Genre
 end
 
 # Test the class by creating an instance and accessing the properties and associations.
-if __FILE__ == $PROGRAM_NAME
-  genre = Genre.new('Rock')
+# if __FILE__ == $PROGRAM_NAME
+#   genre = Genre.new('Rock')
 
-  puts "Genre Name: #{genre.name}" # Should print Rock
-  puts "Items: #{genre.items}" # Should print an empty array
+#   puts "Genre Name: #{genre.name}" # Should print Rock
+#   puts "Items: #{genre.items}" # Should print an empty array
 
-  # Creating an associated Item and adding it to the Genre
-  item = Item.new('Label', 'Author', genre, '2012-05-23')
-  genre.add_item(item)
+#   # Creating an associated Item and adding it to the Genre
+#   item = Item.new('Label', 'Author', genre, '2012-05-23')
+#   genre.add_item(item)
 
-  puts "Items after adding an item: #{genre.items}" # Should print the array with the added item
+#   puts "Items after adding an item: #{genre.items}" # Should print the array with the added item
 
-  puts "Item's Genre after adding the item to the genre: #{item.genre.name}" # Should print the name of the genre
-end
+#   puts "Item's Genre after adding the item to the genre: #{item.genre.name}" # Should print the name of the genre
+# end
