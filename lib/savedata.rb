@@ -56,7 +56,7 @@ class SaveData
     json_str = File.read('./json/music_albums.json')
     @music_albums = JSON.parse(json_str).map do |album_data|
       genre = @genres.find { |g| g.name == album_data['genre'] }
-      music_album = MusicAlbum.new(album_data['label'], nil , genre, album_data['publish_date'], album_data['on_spotify'])
+      music_album = MusicAlbum.new(album_data['label'], genre, album_data['publish_date'], album_data['on_spotify'], nil)
       hash_author = album_data['author']
       music_album.author = Author.new(hash_author['first_name'], hash_author['last_name'])
       music_album
@@ -83,8 +83,8 @@ class SaveData
 
     json_str = File.read('./json/movies.json')
     @movies = JSON.parse(json_str).map do |movie_data|
-      movie = Movie.new(movie_data['label'], nil, movie_data['genre'], movie_data['publish_date'],
-                movie_data['silent'])
+      movie = Movie.new(movie_data['label'], movie_data['genre'], movie_data['publish_date'],
+                        movie_data['silent'], nil)
       hash_author = movie_data['author']
       movie.author = Author.new(hash_author['first_name'], hash_author['last_name'])
       movie

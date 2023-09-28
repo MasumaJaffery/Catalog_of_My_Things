@@ -70,9 +70,9 @@ class App
   def add_music_album
     puts 'Enter album label:'
     label = gets.chomp
-    #puts 'Enter album author:'
-    #author = gets.chomp
-   
+    # puts 'Enter album author:'
+    # author = gets.chomp
+
     puts 'Enter album genre:'
     genre_name = gets.chomp
     genre = @genres.find { |g| g.name == genre_name } || Genre.new(genre_name)
