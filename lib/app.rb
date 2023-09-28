@@ -1,6 +1,7 @@
 require_relative 'item'
 require_relative 'movie'
 require_relative 'source'
+require_relative 'saveData'
 
 class App
   attr_accessor :movies, :sources
@@ -8,6 +9,20 @@ class App
   def initialize
     @movies = []
     @sources = []
+    @savedata = SaveData.new
+    load_data
+  end
+
+  def load_data
+    @savedata.load_data
+    @movies = @savedata.movies
+    @sources = @savedata.sources
+  end
+
+  def save_data
+    @savedata.movies = @movies
+    @savedata.sources = @sources
+    @savedata.save_data
   end
 
   def list_movies
@@ -65,5 +80,6 @@ class App
     movie = Movie.new(title, author, genre, publish_date, silent)
     @movies << movie
     puts 'Movie added successfully.'
+    save_data
   end
 end
