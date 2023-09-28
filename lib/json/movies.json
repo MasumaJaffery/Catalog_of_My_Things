@@ -26,5 +26,12 @@
     "genre": "historical",
     "publish_date": "2000-01-01",
     "silent": false
+  },
+  {
+    "label": "Extraction",
+    "author": "Netflix",
+    "genre": "Action",
+    "publish_date": "2023-09-09",
+    "silent": false
   }
 ]
