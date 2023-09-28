@@ -1,7 +1,7 @@
 require 'date'
 
 class Item
-  attr_accessor :label, :author, :genre, :date, :publish_date
+  attr_accessor :label, :author, :genre, :date, :publish_date, :source
   attr_reader :id, :archived
 
   # inside intialize only those items that need association
@@ -12,6 +12,7 @@ class Item
     @publish_date = Date.parse(publish_date)
     @id = Random.rand(1...1000)
     @archived = false
+    @source = nil
   end
 
   def can_be_archived?

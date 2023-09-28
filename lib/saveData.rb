@@ -41,7 +41,7 @@ class SaveData
           'label' => movie.label,
           'author' => movie.author,
           'genre' => movie.genre,
-          'publish_date' => movie.publish_date.to_s, # Convert Date to string
+          'publish_date' => movie.publish_date.to_s,
           'silent' => movie.silent
         }
       end)

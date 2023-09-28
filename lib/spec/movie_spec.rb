@@ -11,11 +11,10 @@ describe Movie do
     end
   end
 
-    context 'when testing can_be_archived function' do
-        it "shour return ture" do
-            movie = Movie.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
-            expect(movie.can_be_archived?).to eq true
-        end
+  context 'when testing can_be_archived function' do
+    it 'shour return ture' do
+      movie = Movie.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
+      expect(movie.can_be_archived?).to eq true
     end
-
+  end
 end
