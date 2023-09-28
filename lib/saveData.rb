@@ -36,19 +36,19 @@ class SaveData
   # Save movies
   def save_movies
     File.open('./json/movies.json', 'w') do |file|
-      file.puts @movies.map do |movie|
+      file.puts JSON.pretty_generate(@movies.map do |movie|
         {
           'label' => movie.label,
           'author' => movie.author,
           'genre' => movie.genre,
-          'publish_date' => movie.publish_date,
+          'publish_date' => movie.publish_date.to_s, # Convert Date to string
           'silent' => movie.silent
         }
-      end.to_json
+      end)
     end
   end
 
-   # Load sources
+  # Load sources
   def load_source
     return unless File.exist?('./json/sources.json')
 
