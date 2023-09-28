@@ -1,4 +1,5 @@
 require_relative '../game'
+require 'json'
 
 describe Game do
   subject { Game.new(true, '2021-01-01', '2011-01-01') }
