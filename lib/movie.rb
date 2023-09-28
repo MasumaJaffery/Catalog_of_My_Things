@@ -4,7 +4,7 @@ require_relative 'item'
 class Movie < Item
   attr_accessor :silent
 
-  def initialize(label, author, genre, publish_date, silent)
+  def initialize(label, genre, publish_date, silent, author = nil)
     super(label, author, genre, publish_date)
     @silent = silent
   end

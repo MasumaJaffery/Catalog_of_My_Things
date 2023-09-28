@@ -52,7 +52,7 @@ class App
       puts 'No music albums available.'
     else
       @music_albums.each_with_index do |album, index|
-        puts "#{index + 1}. #{album.label} by #{album.author} (#{album.genre.name})"
+        puts "#{index + 1}. #{album.label} by #{album.author.first_name} #{album.author.last_name}  (#{album.genre.name})"
       end
     end
   end
@@ -70,8 +70,9 @@ class App
   def add_music_album
     puts 'Enter album label:'
     label = gets.chomp
-    puts 'Enter album author:'
-    author = gets.chomp
+    # puts 'Enter album author:'
+    # author = gets.chomp
+
     puts 'Enter album genre:'
     genre_name = gets.chomp
     genre = @genres.find { |g| g.name == genre_name } || Genre.new(genre_name)
@@ -81,7 +82,8 @@ class App
     puts 'Available on Spotify? (y/n):'
     on_spotify = gets.chomp.downcase == 'y'
 
-    album = MusicAlbum.new(label, author, genre, publish_date, on_spotify)
+    album = MusicAlbum.new(label, nil, genre, publish_date, on_spotify)
+    attribute_game_to_author(album)
     @music_albums << album
     genre.add_item(album)
 
@@ -96,7 +98,7 @@ class App
     else
       @movies.each do |movie|
         puts "Title: #{movie.label}"
-        puts "Author: #{movie.author}"
+        puts "Author: #{movie.author.first_name} #{movie.author.last_name}"
         puts "Genre: #{movie.genre}"
         puts "Publish Date: #{movie.publish_date}"
         puts "Silent: #{movie.silent}"
@@ -131,8 +133,8 @@ class App
     puts 'Adding a movie:'
     print 'Title: '
     title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
+    # print 'Author: '
+    # author = gets.chomp
     print 'Genre: '
     genre = gets.chomp
     print 'Publish Date (YYYY-MM-DD): '
@@ -141,8 +143,9 @@ class App
     silent = gets.chomp.downcase == 'true'
 
     # Create a new Movie instance
-    movie = Movie.new(title, author, genre, publish_date, silent)
+    movie = Movie.new(title, nil, genre, publish_date, silent)
     @movies << movie
+    attribute_game_to_author(movie)
     puts 'Movie added successfully.'
     save_data
   end
