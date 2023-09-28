@@ -3,11 +3,11 @@
     "label": "Matrix",
     "author": {
       "class": "Author",
-      "id": 214,
+      "id": 241,
       "first_name": "Sisters",
       "last_name": "Malcovich",
       "items": [
-        "#<Movie:0x000001c8f81aded0>"
+
       ]
     },
     "genre": "Action",

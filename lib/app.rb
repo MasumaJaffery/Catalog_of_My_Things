@@ -82,7 +82,7 @@ class App
     puts 'Available on Spotify? (y/n):'
     on_spotify = gets.chomp.downcase == 'y'
 
-    album = MusicAlbum.new(label, nil, genre, publish_date, on_spotify)
+    album = MusicAlbum.new(label, genre, publish_date, on_spotify, nil)
     attribute_game_to_author(album)
     @music_albums << album
     genre.add_item(album)
@@ -143,7 +143,7 @@ class App
     silent = gets.chomp.downcase == 'true'
 
     # Create a new Movie instance
-    movie = Movie.new(title, nil, genre, publish_date, silent)
+    movie = Movie.new(title, genre, publish_date, silent, nil)
     @movies << movie
     attribute_game_to_author(movie)
     puts 'Movie added successfully.'
