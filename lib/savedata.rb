@@ -1,8 +1,7 @@
 require 'json'
 
 class SaveData
-  attr_accessor :sources, :movies, :music_albums, :genres
-  attr_accessor :sources, :movies, :authors, :games
+  attr_accessor :sources, :movies, :music_albums, :genres, :authors, :games
 
   def initialize
     @sources = []
