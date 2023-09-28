@@ -1,7 +1,7 @@
 require 'date'
 
 class Item
-  attr_accessor :label, :author, :genre, :date
+  attr_accessor :label, :author, :genre, :date, :publish_date
   attr_reader :id, :archived
 
   # inside intialize only those items that need association
