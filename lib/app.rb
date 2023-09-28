@@ -3,7 +3,6 @@ require_relative 'movie'
 require_relative 'source'
 require_relative 'saveData'
 
-
 class App
   attr_accessor :movies, :sources
 
