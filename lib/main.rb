@@ -1,5 +1,4 @@
 require_relative './books/app'
-require_relative 'book'
 
 # Define the 'actions' hash
 ACTIONS = {
