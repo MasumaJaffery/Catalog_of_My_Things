@@ -4,16 +4,25 @@ require_relative 'source'
 require_relative 'saveData'
 require_relative 'genre'
 require_relative 'musicalbum'
+require_relative 'games/game'
+require_relative 'games/author'
+require_relative 'games/modules/mode_author'
+require_relative 'games/modules/mode_game'
 
 class App
-  attr_accessor :movies, :sources
   attr_reader :music_albums, :genres
+
+  include AuthorMod
+  include GameMod
+  attr_accessor :movies, :sources, :games, :authors
 
   def initialize
     @movies = []
     @sources = []
     @music_albums = []
     @genres = []
+    @games = []
+    @authors = []
     @savedata = SaveData.new
     load_data
   end
@@ -24,11 +33,15 @@ class App
     @sources = @savedata.sources
     @music_albums = @savedata.music_albums
     @genres = @savedata.genres
+    @games = @savedata.games
+    @authors = @savedata.authors
   end
 
   def save_data
     @savedata.movies = @movies
     @savedata.sources = @sources
+    @savedata.games = @games
+    @savedata.authors = @authors
     @savedata.save_data
     @savedata.genres = @genres
     @savedata.save_data
@@ -131,6 +144,42 @@ class App
     movie = Movie.new(title, author, genre, publish_date, silent)
     @movies << movie
     puts 'Movie added successfully.'
+    save_data
+  end
+
+  def list_games
+    if @games.empty?
+      puts 'No game available. \n'
+    else
+      puts 'List of games : '
+      puts '-' * 20
+      @games.each_with_index do |game, i|
+        puts "#{i + 1}. '#{game.title}' by '#{game.author.first_name} #{game.author.last_name}'"
+      end
+      puts '-' * 20
+    end
+  end
+
+  def list_authors
+    if @authors.empty?
+      puts "No author available \n"
+    else
+      puts 'List og authors : '
+      puts '-' * 20
+      @authors.each_with_index { |author, i| puts "#{i + 1}. Full-name: '#{author.first_name} #{author.last_name}'" }
+      puts '-' * 20
+    end
+  end
+
+  def add_game
+    title = take_title
+    published_date = take_date('Published date')
+    last_play = take_date('Last played at')
+    multiplayer = take_multiplayer
+    game = Game.new(multiplayer, last_play, published_date, title)
+    @games.push(game)
+    attribute_game_to_author(game)
+    print "Game created \n"
     save_data
   end
 end

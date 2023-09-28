@@ -1,13 +1,15 @@
 require 'json'
 
 class SaveData
-  attr_accessor :sources, :movies, :music_albums, :genres
+  attr_accessor :sources, :movies, :music_albums, :genres, :authors, :games
 
   def initialize
     @sources = []
     @movies = []
     @genres = []
     @music_albums = []
+    @games = []
+    @authors = []
   end
 
   # Load data from JSON files
@@ -16,6 +18,8 @@ class SaveData
     load_source
     load_genres
     load_music_albums
+    load_games
+    load_authors
   end
 
   # Save data to JSON files
@@ -24,6 +28,8 @@ class SaveData
     save_source
     save_genres
     save_music_albums
+    save_games
+    save_authors
     puts 'Data saved successfully.'
   rescue StandardError => e
     puts "Error saving data: #{e.message}"
@@ -107,5 +113,68 @@ class SaveData
     File.open('./json/sources.json', 'w') do |file|
       file.puts @sources.map { |source| { 'id' => source.id, 'name' => source.name } }.to_json
     end
+  end
+
+  def save_games
+    File.open('./json/games.json', 'w') do |file|
+      file.puts JSON.pretty_generate(@games.map do |game|
+        {
+          'title' => game.title,
+          'publish_date' => game.publish_date.to_s,
+          'last_played_at' => game.last_played_at.to_s, # Convert Date to string
+          'multiplayer' => game.multiplayer,
+          'author' => object_to_hash(game.author)
+        }
+      end)
+    end
+  end
+
+  def save_authors
+    File.open('./json/authors.json', 'w') do |file|
+      file.puts JSON.pretty_generate(@authors.map do |author|
+        {
+          'first_name' => author.first_name,
+          'last_name' => author.last_name,
+          'items' => author.items
+        }
+      end)
+    end
+  end
+
+  def load_games
+    return unless File.exist?('./json/games.json')
+
+    json_str = File.read('./json/games.json')
+    @games = JSON.parse(json_str).map do |game_data|
+      game = Game.new(game_data['multiplayer'], game_data['last_played_at'], game_data['publish_date'], game_data['title'])
+      hash_author = game_data['author']
+      game.author = Author.new(hash_author['first_name'], hash_author['last_name'])
+      game
+    end
+  end
+
+  def load_authors
+    return unless File.exist?('./json/authors.json')
+
+    json_str = File.read('./json/authors.json')
+    @authors = JSON.parse(json_str).map do |author_data|
+      author = Author.new(author_data['first_name'], author_data['last_name'])
+      author.items = author_data['items']
+      author
+    end
+  end
+
+  def object_to_hash(object)
+    hash = {}
+    arr_of_class = %w[Game Author] # to store the class_name
+    hash['class'] = object.class # store the class_name
+    object.instance_variables.each do |var|
+      name = var.to_s.delete('@') # take the name of instance variable without @
+      value = object.instance_variable_get(var) # retrive the value of variable by it's name
+      # if the value is an instance of Game or Author. so we transforme it into a hash to
+      value = object_to_hash(value) if arr_of_class.include?(value.class.to_s)
+      hash[name] = value
+    end
+    hash
   end
 end
