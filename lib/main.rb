@@ -1,3 +1,6 @@
+require_relative './books/app'
+require_relative 'book'
+
 # Define the 'actions' hash
 ACTIONS = {
   1 => :list_books,
@@ -15,33 +18,34 @@ ACTIONS = {
   13 => :exit_application
 }.freeze
 
-def handle_option(option)
+def handle_option(app, option)
   action = ACTIONS[option]
   if action
-    send(action)
+    app.send(action)
   else
     puts 'Invalid option.'
   end
 end
 
 def display_menu
-  puts 'Welcome to our Catalog App'
-
-  loop do
-    ACTIONS.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
-    print 'Option: '
-    choice = gets.chomp.to_i
-    handle_option(choice)
-  end
+  puts "\nPlease choose an option:"
+  ACTIONS.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
+  print 'Option: '
+  gets.chomp.to_i
 end
 
 def exit_application
-  puts 'exited'
+  puts 'Exited'
   exit
 end
 
 def main
-  display_menu
+  app = App.new
+
+  loop do
+    option = display_menu
+    handle_option(app, option)
+  end
 end
 
 main
