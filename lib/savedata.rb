@@ -54,6 +54,7 @@ class SaveData
     end
   end
 
+  # Save music albums
   def save_music_albums
     File.open('./json/music_albums.json', 'w') do |file|
       file.puts JSON.pretty_generate(@music_albums.map do |album|
