@@ -7,10 +7,11 @@ class Label < Item
 
   def initialize(title, color, items, publish_date)
     # Calling Constructor of Parent Class (Item)
-    super('#label', '#author', '#genre', publish_date)
+    super(label, genre, author, publish_date)
     @title = title
     @color = color
     @items = items
+    @publish_date = Date.parse(publish_date)
   end
 
   def add_item(item)
@@ -21,5 +22,5 @@ class Label < Item
   end
 end
 
-label = Label.new('Rainbow', 'blue', [1, 2, 3, 4, 5, 6, 7], '2023-09-27')
+label = Label.new('Rainbow', 'blue', [], '2023-09-27')
 puts label.title

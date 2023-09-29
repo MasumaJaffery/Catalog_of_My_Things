@@ -1,7 +1,7 @@
 require 'json'
 
 class SaveData
-  attr_accessor :sources, :movies, :music_albums, :genres, :authors, :games
+  attr_accessor :sources, :movies, :music_albums, :genres, :authors, :games, :books, :labels
 
   def initialize
     @sources = []
@@ -10,6 +10,8 @@ class SaveData
     @music_albums = []
     @games = []
     @authors = []
+    @books = []
+    @label = []
   end
 
   # Load data from JSON files
@@ -20,6 +22,8 @@ class SaveData
     load_music_albums
     load_games
     load_authors
+    load_books
+    load_label
   end
 
   # Save data to JSON files
@@ -30,9 +34,54 @@ class SaveData
     save_music_albums
     save_games
     save_authors
+    save_books
+    save_label
     puts 'Data saved successfully.'
   rescue StandardError => e
     puts "Error saving data: #{e.message}"
+  end
+
+  def load_books
+    return unless File.exist?('./json/books.json')
+
+    json_str = File.read('./json/books.json')
+    @books = JSON.parse(json_str).map do |book_data|
+      Book.new(book_data['publisher'], book_data['cover_state'], book_data['publish_date'],
+               book_data['archieved'])
+    end
+  end
+
+  def save_books
+    File.open('./json/books.json', 'w') do |file|
+      file.puts JSON.pretty_generate(@books.map do |book|
+        {
+          'publisher' => book.publisher,
+          'cover state' => book.cover_state,
+          'publish_date' => book.publish_date.to_s, # Convert Date to string
+          'archived' => book.archived
+        }
+      end)
+    end
+  end
+
+  def load_label
+    return unless File.exist?('./json/labels.json')
+
+    json_str = File.read('./json/labels.json')
+    @labels = JSON.parse(json_str).map do |label_data|
+      title = label_data['title']
+      color = label_data['color']
+      items = label_data['items']
+      publish_date = label_data['publish_date']
+
+      Label.new(title, color, items, publish_date)
+    end
+  end
+
+  def save_label
+    File.open('./json/labels.json', 'w') do |file|
+      file.puts @label.map { |label| { 'title' => label.title, 'color' => label.color } }.to_json
+    end
   end
 
   def load_genres
