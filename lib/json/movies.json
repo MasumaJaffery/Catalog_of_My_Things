@@ -1,3 +1,11 @@
 [
-
+  {
+    "label": "Wednesday-Series",
+    "author": {
+      "class": "String"
+    },
+    "genre": "Fiction",
+    "publish_date": "2022-10-21",
+    "silent": true
+  }
 ]
