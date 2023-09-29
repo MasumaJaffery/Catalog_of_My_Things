@@ -167,7 +167,7 @@ class App
       @games.each_with_index do |game, i|
         puts "#{i + 1}. '#{game.title}' by '#{game.author.first_name} #{game.author.last_name}'"
       end
-      puts '-' * 20
+      puts '-' * 10
     end
   end
 
