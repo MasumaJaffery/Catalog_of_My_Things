@@ -1,20 +1,5 @@
 [
   {
-    "label": "Matrix",
-    "author": {
-      "class": 
-      "id": 663,
-      "first_name": "Sisters",
-      "last_name": "Malcovich",
-      "items": [
-
-      ]
-    },
-    "genre": "Action",
-    "publish_date": "2007-09-09",
-    "silent": null
-  },
-  {
     "label": "Gazo",
     "author": {
       "class": "Author",
