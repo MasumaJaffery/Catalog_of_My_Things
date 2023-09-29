@@ -101,21 +101,3 @@ CREATE TABLE Label (
     book_id INT NOT NULL
 )
 
--- schema for the 'movies' table
-CREATE TABLE movies (
-    id SERIAL PRIMARY KEY,
-    label VARCHAR(255) NOT NULL,
-    author VARCHAR(255),
-    genre VARCHAR(255) NOT NULL,
-    publish_date DATE NOT NULL,
-    silent BOOLEAN NOT NULL,
-    archived BOOLEAN NOT NULL,
-    source_id INT,
-    FOREIGN KEY (source_id) REFERENCES sources (id)
-);
-
--- schema for the 'sources' table
-CREATE TABLE sources (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
