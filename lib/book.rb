@@ -3,7 +3,7 @@ require_relative 'item'
 class Book < Item
   attr_accessor :publisher, :cover_state
 
-  def initialize(publisher, cover_state, publish_date, archieved)
+  def initialize(publisher, cover_state, publish_date, _archieved)
     # call constructor here
     super(label, genre, author, publish_date)
     @id = rand(1...100)
@@ -18,5 +18,5 @@ class Book < Item
   end
 end
 
-book = Book.new('Imam Ali a.s', 'Nahjul-e-Balgah', '2001-01-01',false)
+book = Book.new('Imam Ali a.s', 'Nahjul-e-Balgah', '2001-01-01', false)
 puts book.can_be_archived?

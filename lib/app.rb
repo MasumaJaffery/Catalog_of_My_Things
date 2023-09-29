@@ -191,14 +191,15 @@ class App
     save_data
   end
 
-  
   def list_books
     if @books.empty?
       puts "No Books available \n"
     else
       puts 'List of Books : '
       puts '-' * 20
-      @books.each_with_index { |book, i| puts "#{i + 1}. Publisher: '#{book.publisher} #{book.cover_state}'" }
+      @books.each_with_index do |book, i|
+        puts "#{i + 1}. Publisher: '#{book.publisher}'  Cover: '#{book.cover_state}'"
+      end
       puts '-' * 20
     end
   end
@@ -213,8 +214,7 @@ class App
       puts '-' * 20
     end
   end
-  
- 
+
   def add_book
     puts('Add a book, please enter the book information:')
     print('Publisher: ')
@@ -223,22 +223,22 @@ class App
     cover_state = gets.chomp.strip
     print('Publish Date: ')
     publish_date = gets.chomp.strip
-    print('Archived (true/false): ')  # Note: I corrected the spelling of "archived"
+    print('Archived (true/false): ') # NOTE: I corrected the spelling of "archived"
     archived = gets.chomp.strip.downcase == 'true'
-  
+
     # Create a new Book instance with the updated constructor arguments
     book = Book.new(publisher, cover_state, publish_date, archived)
     @books << book
     puts("Book added successfully: #{cover_state} - #{publisher}")
     save_data
   end
+
   def load_movies
     # Print the content of the JSON data before parsing
     json_data = File.read('movies.json')
     puts json_data
-  
+
     # Now, try parsing the JSON data
     @movies = JSON.parse(json_data, object_class: OpenStruct)
   end
-  
 end

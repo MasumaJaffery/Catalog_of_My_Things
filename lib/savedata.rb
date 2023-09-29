@@ -47,7 +47,7 @@ class SaveData
     json_str = File.read('./json/books.json')
     @books = JSON.parse(json_str).map do |book_data|
       Book.new(book_data['publisher'], book_data['cover_state'], book_data['publish_date'],
-                book_data['archieved'])
+               book_data['archieved'])
     end
   end
 
@@ -66,24 +66,23 @@ class SaveData
 
   def load_label
     return unless File.exist?('./json/labels.json')
-  
+
     json_str = File.read('./json/labels.json')
     @labels = JSON.parse(json_str).map do |label_data|
       title = label_data['title']
       color = label_data['color']
       items = label_data['items']
       publish_date = label_data['publish_date']
-  
+
       Label.new(title, color, items, publish_date)
     end
   end
-  
-  
-    def save_label
-      File.open('./json/labels.json', 'w') do |file|
-        file.puts @label.map { |label| { 'title' => label.title, 'color' => label.color } }.to_json
-      end
+
+  def save_label
+    File.open('./json/labels.json', 'w') do |file|
+      file.puts @label.map { |label| { 'title' => label.title, 'color' => label.color } }.to_json
     end
+  end
 
   def load_genres
     return unless File.exist?('./json/genres.json')
