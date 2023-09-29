@@ -61,6 +61,7 @@ In order to run this project, you must have installed and configured the followi
  1). Ruby
    - the Ruby should be installed in your machine.
    - Run `ruby main.rb`.
+   - write `cd lib` and then `ruby main.rb` in terminal.
  2). PostgreSQL
 
 
@@ -158,6 +159,6 @@ Special Thanks to the Microverse and Microanuts.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
