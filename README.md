@@ -52,7 +52,7 @@ This repository includes files with plain PostgreSQL that can be used to recreat
 
 - Use [schema.sql](./schema.sql) to create all tables.
 - Find the visual representation of the database inside the folder :
-   <img src='./schema/schema.jpg'/>
+   <img src='./sql/catalog_of_my_things.png'/>
 
 <a name="readme-top"></a>
 
