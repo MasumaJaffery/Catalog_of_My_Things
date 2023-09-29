@@ -8,13 +8,15 @@ require_relative 'games/game'
 require_relative 'games/author'
 require_relative 'games/modules/mode_author'
 require_relative 'games/modules/mode_game'
+require_relative 'book'
+require_relative 'label'
 
 class App
-  attr_reader :music_albums, :genres
+  attr_reader :music_albums, :genres, :label
 
   include AuthorMod
   include GameMod
-  attr_accessor :movies, :sources, :games, :authors
+  attr_accessor :movies, :sources, :games, :authors, :books
 
   def initialize
     @movies = []
@@ -23,6 +25,8 @@ class App
     @genres = []
     @games = []
     @authors = []
+    @books = []
+    @labels = []
     @savedata = SaveData.new
     load_data
   end
@@ -35,6 +39,8 @@ class App
     @genres = @savedata.genres
     @games = @savedata.games
     @authors = @savedata.authors
+    @books = @savedata.books
+    @labels = @savedata.labels
   end
 
   def save_data
@@ -44,6 +50,8 @@ class App
     @savedata.authors = @authors
     @savedata.save_data
     @savedata.genres = @genres
+    @savedata.books = @books
+    @savedata.labels = @labels
     @savedata.save_data
   end
 
@@ -52,7 +60,7 @@ class App
       puts 'No music albums available.'
     else
       @music_albums.each_with_index do |album, index|
-        puts "#{index + 1}. #{album.label} by #{album.author} (#{album.genre.name})"
+        puts "#{index + 1}. #{album.label} by #{album.author.first_name} #{album.author.last_name}  (#{album.genre.name})"
       end
     end
   end
@@ -70,8 +78,9 @@ class App
   def add_music_album
     puts 'Enter album label:'
     label = gets.chomp
-    puts 'Enter album author:'
-    author = gets.chomp
+    # puts 'Enter album author:'
+    # author = gets.chomp
+
     puts 'Enter album genre:'
     genre_name = gets.chomp
     genre = @genres.find { |g| g.name == genre_name } || Genre.new(genre_name)
@@ -81,7 +90,8 @@ class App
     puts 'Available on Spotify? (y/n):'
     on_spotify = gets.chomp.downcase == 'y'
 
-    album = MusicAlbum.new(label, author, genre, publish_date, on_spotify)
+    album = MusicAlbum.new(label, nil, genre, publish_date, on_spotify)
+    attribute_game_to_author(album)
     @music_albums << album
     genre.add_item(album)
 
@@ -96,7 +106,7 @@ class App
     else
       @movies.each do |movie|
         puts "Title: #{movie.label}"
-        puts "Author: #{movie.author}"
+        puts "Author: #{movie.author.first_name} #{movie.author.last_name}"
         puts "Genre: #{movie.genre}"
         puts "Publish Date: #{movie.publish_date}"
         puts "Silent: #{movie.silent}"
@@ -131,8 +141,8 @@ class App
     puts 'Adding a movie:'
     print 'Title: '
     title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
+    # print 'Author: '
+    # author = gets.chomp
     print 'Genre: '
     genre = gets.chomp
     print 'Publish Date (YYYY-MM-DD): '
@@ -141,8 +151,9 @@ class App
     silent = gets.chomp.downcase == 'true'
 
     # Create a new Movie instance
-    movie = Movie.new(title, author, genre, publish_date, silent)
+    movie = Movie.new(title, genre, publish_date, silent, nil)
     @movies << movie
+    attribute_game_to_author(movie)
     puts 'Movie added successfully.'
     save_data
   end
@@ -156,7 +167,7 @@ class App
       @games.each_with_index do |game, i|
         puts "#{i + 1}. '#{game.title}' by '#{game.author.first_name} #{game.author.last_name}'"
       end
-      puts '-' * 20
+      puts '-' * 10
     end
   end
 
@@ -181,5 +192,56 @@ class App
     attribute_game_to_author(game)
     print "Game created \n"
     save_data
+  end
+
+  def list_books
+    if @books.empty?
+      puts "No Books available \n"
+    else
+      puts 'List of Books : '
+      puts '-' * 20
+      @books.each_with_index do |book, i|
+        puts "#{i + 1}. Publisher: '#{book.publisher}'  Cover: '#{book.cover_state}'"
+      end
+      puts '-' * 20
+    end
+  end
+
+  def list_labels
+    if @labels.empty?
+      puts "No Labels available \n"
+    else
+      puts 'List of Labels : '
+      puts '-' * 20
+      @labels.each_with_index { |label, i| puts "#{i + 1}. Title: '#{label.title}' Color: '#{label.color}'" }
+      puts '-' * 20
+    end
+  end
+
+  def add_book
+    puts('Add a book, please enter the book information:')
+    print('Publisher: ')
+    publisher = gets.chomp.strip
+    print('Cover State: ')
+    cover_state = gets.chomp.strip
+    print('Publish Date: ')
+    publish_date = gets.chomp.strip
+    print('Archived (true/false): ') # NOTE: I corrected the spelling of "archived"
+    archived = gets.chomp.strip.downcase == 'true'
+
+    # Create a new Book instance with the updated constructor arguments
+    book = Book.new(publisher, cover_state, publish_date, archived)
+    @books << book
+    puts("Book added successfully: #{cover_state} - #{publisher}")
+    save_data
+  end
+
+  def load_movies
+    # Print the content of the JSON data before parsing
+    json_data = File.read('movies.json')
+    puts json_data
+
+    # Now, try parsing the JSON data
+    @movies = JSON.parse(json_data, object_class: OpenStruct)
   end
 end

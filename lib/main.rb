@@ -1,4 +1,3 @@
-require_relative 'books/app'
 require_relative 'app'
 require_relative 'movie'
 
