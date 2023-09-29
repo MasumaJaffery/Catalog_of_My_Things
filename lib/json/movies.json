@@ -1,11 +1,16 @@
 [
   {
-    "label": "Wednesday-Series",
+    "label": "Matrix",
     "author": {
-      "class": "String"
+      "class": "Author",
+      "id": 214,
+      "first_name": "Sisters",
+      "last_name": "Malcovich",
+      "items": [
+        "#<Movie:0x000001c8f81aded0>"
+      ]
     },
-    "genre": "Fiction",
-    "publish_date": "2022-10-21",
-    "silent": true
+    "genre": "Action",
+    "publish_date": "2007-09-09",
   }
 ]
