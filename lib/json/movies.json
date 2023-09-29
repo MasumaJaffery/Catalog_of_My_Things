@@ -3,7 +3,7 @@
     "label": "Gazo",
     "author": {
       "class": "Author",
-      "id": 15,
+      "id": 160,
       "first_name": "Jacque",
       "last_name": "Mark",
       "items": [
@@ -18,15 +18,47 @@
     "label": "Gazo",
     "author": {
       "class": "Author",
-      "id": 959,
+      "id": 349,
       "first_name": "Jacque",
       "last_name": "Malti",
       "items": [
-        "#<Movie:0x000001877003bad0>"
+
       ]
     },
     "genre": "Action",
     "publish_date": "2020-09-08",
+    "silent": false
+  },
+  {
+    "label": "a",
+    "author": {
+      "class": "Author",
+      "id": 159,
+      "first_name": "N",
+      "last_name": "J",
+      "items": [
+
+      ]
+    },
+    "genre": "b",
+    "publish_date": "2020-01-01",
+    "silent": false
+  },
+  {
+    "label": "a",
+    "author": {
+      "class": "Author",
+      "id": 794,
+      "first_name": "N",
+      "last_name": "J",
+      "items": [
+        "#<Movie:0x000001eb305f0d30>",
+        "#<Movie:0x000002582f9006f8>",
+        "#<MusicAlbum:0x000002583175f928>"
+      ]
+    },
+    "genre": "b",
+    "publish_date": "2020-01-01",
     "silent": false
   }
 ]
