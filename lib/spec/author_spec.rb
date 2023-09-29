@@ -1,5 +1,5 @@
-require_relative '../author'
-require_relative '../../item'
+require_relative '../games/author'
+require_relative '../item'
 require 'json'
 
 describe Author do
