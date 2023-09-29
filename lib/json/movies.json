@@ -3,14 +3,45 @@
     "label": "Matrix",
     "author": {
       "class": "Author",
-      "id": 214,
+      "id": 663,
       "first_name": "Sisters",
       "last_name": "Malcovich",
       "items": [
-        "#<Movie:0x000001c8f81aded0>"
+
       ]
     },
     "genre": "Action",
     "publish_date": "2007-09-09",
+    "silent": null
+  },
+  {
+    "label": "Gazo",
+    "author": {
+      "class": "Author",
+      "id": 15,
+      "first_name": "Jacque",
+      "last_name": "Mark",
+      "items": [
+
+      ]
+    },
+    "genre": "Actin",
+    "publish_date": "2020-09-07",
+    "silent": false
+  },
+  {
+    "label": "Gazo",
+    "author": {
+      "class": "Author",
+      "id": 959,
+      "first_name": "Jacque",
+      "last_name": "Malti",
+      "items": [
+        "#<Movie:0x000001877003bad0>"
+      ]
+    },
+    "genre": "Action",
+    "publish_date": "2020-09-08",
+    "silent": false
   }
 ]

@@ -151,7 +151,7 @@ class App
     silent = gets.chomp.downcase == 'true'
 
     # Create a new Movie instance
-    movie = Movie.new(title, nil, genre, publish_date, silent)
+    movie = Movie.new(title, genre, publish_date, silent, nil)
     @movies << movie
     attribute_game_to_author(movie)
     puts 'Movie added successfully.'
