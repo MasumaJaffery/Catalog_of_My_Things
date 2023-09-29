@@ -51,7 +51,7 @@ class App
     @savedata.save_data
     @savedata.genres = @genres
     @savedata.books = @books
-    @savedata.label = @label
+    @savedata.labels = @labels
     @savedata.save_data
   end
 
