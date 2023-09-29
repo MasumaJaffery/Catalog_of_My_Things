@@ -2,6 +2,7 @@ require_relative 'app'
 require_relative 'movie'
 
 # Define the 'actions' hash
+puts "Welcome to Catalog App!"
 ACTIONS = {
   1 => :list_books,
   2 => :list_music_albums,

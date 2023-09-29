@@ -21,6 +21,3 @@ class Label < Item
     item.label = self
   end
 end
-
-label = Label.new('Rainbow', 'blue', [], '2023-09-27')
-puts label.title

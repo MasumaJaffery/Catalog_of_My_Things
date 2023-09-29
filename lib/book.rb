@@ -18,5 +18,5 @@ class Book < Item
   end
 end
 
-book = Book.new('Imam Ali a.s', 'Nahjul-e-Balgah', '2001-01-01', false)
-puts book.can_be_archived?
+# book = Book.new('Imam Ali a.s', 'Nahjul-e-Balgah', '2001-01-01', false)
+# puts book.can_be_archived?
