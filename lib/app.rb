@@ -12,11 +12,11 @@ require_relative 'book'
 require_relative 'label'
 
 class App
-  attr_reader :music_albums, :genres, :label
+  attr_reader :music_albums, :genres, :label, :sources
 
   include AuthorMod
   include GameMod
-  attr_accessor :movies, :sources, :games, :authors, :books
+  attr_accessor :movies, :games, :authors, :books
 
   def initialize
     @movies = []

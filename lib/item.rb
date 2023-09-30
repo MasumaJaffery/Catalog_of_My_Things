@@ -1,8 +1,8 @@
 require 'date'
 
 class Item
-  attr_accessor :label, :author, :genre, :date, :publish_date, :source
-  attr_reader :id, :archived, :source, :genre, :author, :label
+  attr_accessor :date, :publish_date
+  attr_reader :id, :archived, :label, :author, :source, :genre
 
   def initialize(label, author, genre, publish_date)
     @label = label
@@ -36,23 +36,23 @@ class Item
   end
 
   def genre=(genre)
-      @genre = genre
-      genre.items.push(self) unless genre.items.include?(self)
-    end
+    @genre = genre
+    genre.items.push(self) unless genre.items.include?(self)
+  end
 
-    def author=(author)
-      @author = author
-      author.items.push(self) unless author.items.include?(self)
-    end
+  def author=(author)
+    @author = author
+    author.items.push(self) unless author.items.include?(self)
+  end
 
-    def label=(label)
-      @label = label
-      label.items.push(self) unless label.items.include?(self)
-    end
-    
-     # only if group has 4 members
-    def source=(source)
-      @source = source
-      source.items.push(self) unless source.items.include?(self)
-    end
+  def label=(label)
+    @label = label
+    label.items.push(self) unless label.items.include?(self)
+  end
+
+  # only if group has 4 members
+  def source=(source)
+    @source = source
+    source.items.push(self) unless source.items.include?(self)
+  end
 end

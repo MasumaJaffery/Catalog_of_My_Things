@@ -14,7 +14,7 @@ describe Book do
 
     context 'when test cover state"' do
       it 'should returns expected info' do
-        expect(book.cover_state).to eq ('Nahjul-e-Balgah')
+        expect(book.cover_state).to eq('Nahjul-e-Balgah')
       end
     end
   end

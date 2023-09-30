@@ -3,16 +3,41 @@
     "label": "a",
     "author": {
       "class": "Author",
-      "id": 302,
+      "id": 862,
       "first_name": "N",
       "last_name": "J",
       "items": [
-        "#<Movie:0x000001eb305f0d30>",
-        "#<Movie:0x000002582f9006f8>",
-        "#<MusicAlbum:0x000002583175f928>",
-        "#<Movie:0x000002193b0bfb98>",
-        "#<Movie:0x000001fef32ffb40>",
-        "#<Game:0x000001fef2a18040>"
+        "#<Movie:0x000002bfdf7f07f0>"
+      ]
+    },
+    "genre": "f",
+    "publish_date": "2000-01-01",
+    "silent": false
+  },
+  {
+    "label": "f",
+    "author": {
+      "class": "Author",
+      "id": 115,
+      "first_name": "N",
+      "last_name": "J",
+      "items": [
+        "#<Movie:0x000002bfdf7f0250>"
+      ]
+    },
+    "genre": "d",
+    "publish_date": "2000-01-01",
+    "silent": false
+  },
+  {
+    "label": "a",
+    "author": {
+      "class": "Author",
+      "id": 946,
+      "first_name": "Nnnnnnnnnnnnnnnn",
+      "last_name": "J",
+      "items": [
+        "#<Movie:0x000002bfdf7f0160>"
       ]
     },
     "genre": "f",
