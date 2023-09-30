@@ -28,8 +28,11 @@ def handle_option(app, option)
   end
 end
 
+require 'colorize'
+
 def display_menu
-  puts "\nPlease choose an option:"
+  puts "\nWelcome to Your Menu".colorize(:green)
+  puts 'Please choose an option:'.colorize(:blue)
   ACTIONS.each { |k, v| puts "#{k} - #{v.to_s.tr('_', ' ')}" }
   print 'Option: '
   gets.chomp.to_i

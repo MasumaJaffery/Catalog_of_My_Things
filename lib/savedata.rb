@@ -36,7 +36,6 @@ class SaveData
     save_authors
     save_books
     save_label
-    puts 'Data saved successfully.'
   rescue StandardError => e
     puts "Error saving data: #{e.message}"
   end
@@ -160,13 +159,43 @@ class SaveData
     return unless File.exist?('./json/sources.json')
 
     json_str = File.read('./json/sources.json')
-    @sources = JSON.parse(json_str).map { |source_data| Source.new(source_data['id'], source_data['name']) }
+    source_data = JSON.parse(json_str)
+
+    @sources = source_data.map do |source_info|
+      source = Source.new(source_info['id'], source_info['name'])
+
+      # Check if the source has associated items
+      source_info['items']&.each do |item_data|
+        label = item_data['label']
+        genre = item_data['genre']
+        publish_date = item_data['publish_date']
+        author = item_data['author']
+
+        item = Item.new(label, genre, publish_date, author)
+        source.add_item(item)
+      end
+
+      source
+    end
   end
 
   # Save sources
   def save_source
     File.open('./json/sources.json', 'w') do |file|
-      file.puts @sources.map { |source| { 'id' => source.id, 'name' => source.name } }.to_json
+      sources_data = @sources.map do |source|
+        {
+          'id' => source.id,
+          'name' => source.name,
+          'items' => source.items.map do |item|
+            {
+              'label' => item.label,
+              'genre' => item.genre,
+              'publish_date' => item.publish_date.to_s
+            }
+          end
+        }
+      end
+      file.puts JSON.pretty_generate(sources_data)
     end
   end
 

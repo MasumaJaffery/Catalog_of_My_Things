@@ -139,23 +139,34 @@ class App
 
   def add_movie
     puts 'Adding a movie:'
-    print 'Title: '
-    title = gets.chomp
-    # print 'Author: '
-    # author = gets.chomp
-    print 'Genre: '
-    genre = gets.chomp
-    print 'Publish Date (YYYY-MM-DD): '
-    publish_date = gets.chomp
-    print 'Silent (true/false): '
-    silent = gets.chomp.downcase == 'true'
+    title = get_user_input('Title: ')
+    genre = get_user_input('Genre: ')
+    source_name = get_user_input('Source: ')
+    publish_date = get_user_input('Publish Date (YYYY-MM-DD): ')
+    silent = get_user_input('Silent (true/false): ').downcase == 'true'
 
-    # Create a new Movie instance
+    source = find_or_create_source(source_name)
     movie = Movie.new(title, genre, publish_date, silent, nil)
-    @movies << movie
     attribute_game_to_author(movie)
+    item = Item.new("Movie - #{movie.genre}", movie.author, movie.genre, movie.publish_date)
+    source.add_item(item)
+    @movies << movie
     puts 'Movie added successfully.'
     save_data
+  end
+
+  def get_user_input(prompt)
+    print prompt
+    gets.chomp
+  end
+
+  def find_or_create_source(source_name)
+    source = @sources.find { |s| s.name == source_name }
+    source || begin
+      new_source = Source.new(source_name)
+      @sources << new_source
+      new_source
+    end
   end
 
   def list_games
