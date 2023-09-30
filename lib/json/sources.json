@@ -1,0 +1,51 @@
+[
+  {
+    "id": "d",
+    "name": 476,
+    "items": [
+      {
+        "label": "f",
+        "genre": "",
+        "publish_date": ""
+      },
+      {
+        "label": "movie - f",
+        "genre": "",
+        "publish_date": ""
+      }
+    ]
+  },
+  {
+    "id": 367,
+    "name": "afhgan",
+    "items": [
+      {
+        "label": "movie - historical",
+        "genre": "",
+        "publish_date": ""
+      }
+    ]
+  },
+  {
+    "id": "sd",
+    "name": 563,
+    "items": [
+      {
+        "label": "movie - df",
+        "genre": "",
+        "publish_date": ""
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Netflix",
+    "items": [
+      {
+        "label": "Movie - Netflix",
+        "genre": "Netflix",
+        "publish_date": ""
+      }
+    ]
+  }
+]
