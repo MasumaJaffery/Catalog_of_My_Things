@@ -3,7 +3,7 @@
     "label": "Gazo",
     "author": {
       "class": "Author",
-      "id": 160,
+      "id": 327,
       "first_name": "Jacque",
       "last_name": "Mark",
       "items": [
@@ -18,7 +18,7 @@
     "label": "Gazo",
     "author": {
       "class": "Author",
-      "id": 349,
+      "id": 883,
       "first_name": "Jacque",
       "last_name": "Malti",
       "items": [
@@ -33,7 +33,7 @@
     "label": "a",
     "author": {
       "class": "Author",
-      "id": 159,
+      "id": 622,
       "first_name": "N",
       "last_name": "J",
       "items": [
@@ -48,16 +48,29 @@
     "label": "a",
     "author": {
       "class": "Author",
-      "id": 794,
+      "id": 787,
       "first_name": "N",
       "last_name": "J",
       "items": [
-        "#<Movie:0x000001eb305f0d30>",
-        "#<Movie:0x000002582f9006f8>",
-        "#<MusicAlbum:0x000002583175f928>"
+
       ]
     },
     "genre": "b",
+    "publish_date": "2020-01-01",
+    "silent": false
+  },
+  {
+    "label": "title",
+    "author": {
+      "class": "Author",
+      "id": 78,
+      "first_name": "Najib",
+      "last_name": "J",
+      "items": [
+        "#<Movie:0x000001d31cd8f6a8>"
+      ]
+    },
+    "genre": "historical",
     "publish_date": "2020-01-01",
     "silent": false
   }

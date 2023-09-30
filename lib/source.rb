@@ -16,9 +16,7 @@ class Source
   end
 end
 
-# source = Source.new(1, 'Baqir')
-# now the add_item method will get an instance of class and it will add that into items object
-# Print the source's properties
-# puts "Source ID: #{source.id}"
-# puts "Source Name: #{source.name}"
-# puts "Associated Items: #{source.items.map { |item| item.name }}"
+# source = Source.new('From a friend')
+# item = Item.new('Item 1', 'Author 1', 'Genre 1', '2023-09-24')
+# source.add_item(item)
+# puts source.to_json
