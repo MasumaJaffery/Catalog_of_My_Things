@@ -1,77 +1,22 @@
 [
   {
-    "label": "Gazo",
-    "author": {
-      "class": "Author",
-      "id": 327,
-      "first_name": "Jacque",
-      "last_name": "Mark",
-      "items": [
-
-      ]
-    },
-    "genre": "Actin",
-    "publish_date": "2020-09-07",
-    "silent": false
-  },
-  {
-    "label": "Gazo",
-    "author": {
-      "class": "Author",
-      "id": 883,
-      "first_name": "Jacque",
-      "last_name": "Malti",
-      "items": [
-
-      ]
-    },
-    "genre": "Action",
-    "publish_date": "2020-09-08",
-    "silent": false
-  },
-  {
     "label": "a",
     "author": {
       "class": "Author",
-      "id": 622,
+      "id": 302,
       "first_name": "N",
       "last_name": "J",
       "items": [
-
+        "#<Movie:0x000001eb305f0d30>",
+        "#<Movie:0x000002582f9006f8>",
+        "#<MusicAlbum:0x000002583175f928>",
+        "#<Movie:0x000002193b0bfb98>",
+        "#<Movie:0x000001fef32ffb40>",
+        "#<Game:0x000001fef2a18040>"
       ]
     },
-    "genre": "b",
-    "publish_date": "2020-01-01",
-    "silent": false
-  },
-  {
-    "label": "a",
-    "author": {
-      "class": "Author",
-      "id": 787,
-      "first_name": "N",
-      "last_name": "J",
-      "items": [
-
-      ]
-    },
-    "genre": "b",
-    "publish_date": "2020-01-01",
-    "silent": false
-  },
-  {
-    "label": "title",
-    "author": {
-      "class": "Author",
-      "id": 78,
-      "first_name": "Najib",
-      "last_name": "J",
-      "items": [
-        "#<Movie:0x000001d31cd8f6a8>"
-      ]
-    },
-    "genre": "historical",
-    "publish_date": "2020-01-01",
+    "genre": "f",
+    "publish_date": "2000-01-01",
     "silent": false
   }
 ]
