@@ -171,7 +171,7 @@ class App
 
   def list_games
     if @games.empty?
-      puts 'No game available. \n'
+      puts 'No game available. '
     else
       puts 'List of games : '
       puts '-' * 20
