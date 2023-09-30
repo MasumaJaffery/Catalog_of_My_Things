@@ -28,7 +28,6 @@ def handle_option(app, option)
   end
 end
 
-
 def display_menu
   puts "\nWelcome to Your Menu"
   puts "\nPlease choose an option:"
